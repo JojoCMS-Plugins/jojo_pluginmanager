@@ -1,14 +1,20 @@
-#plugin {
-	margin-top: 20px;
+.hidden {
+	display: none;
+}
+
+table.detailsTable {
 	font-size: 13px;
+	margin: 0;
 }
 
-#plugin table {
-	width: 600px;
-	border: 1px solid solid;
+table.detailsTable caption {
+	margin-top: 20px;
+	font-size: 15px;
+	font-weight: bold;
+	text-align: left;
 }
 
-#plugin table th {
+table.detailsTable th {
 	background-color: #ddd;
 	color: #5E7FBB;
 	width: 125px;
@@ -16,75 +22,89 @@
 	padding-left: 15px;
 }
 
-table tr td {
+table.detailsTable tr td {
 	padding-left: 15px;
+	padding-top: 10px;
 }
 
 tr.description td {
-	border-bottom: 1px solid #ccc;
-	padding-bottom: 20px;
+	border: 1px solid #ccc;
+	padding-bottom: 10px;
 }
 
-tr.description td span, div.lastComment span, div.releasenotes span, .versiondetails span{
+tr.description td span,div.lastComment span,.versiondetails span,.releasenotes p span {
 	font-weight: bold;
+	padding: 0;
 }
 
 td.stars {
 	width: 170px;
 }
 
-.versiondetails {
-	border-bottom: 2px solid #5E7FBB;
-}
-
-.versiondetails div {
-	float: left;
-	width: 290px;
-	margin: 10px 5px 0 0;
-
-
-}
-
 .stars {
 	width: 170px;
-	padding-top: 20px;
+	padding-top: 10px;
 }
 
-
 div.releasenotes {
-	clear: both;
-	width: 100%;
 	padding: 10px 0;
 	margin-bottom: 10px;
 	border-bottom: 1px solid #5E7FBB;
 }
 
-.releasenotes a {
-text-align: right;
+.releasenotes a, .right {
+	text-align: right;
 }
-#plugindetails h2 {
 
-	font-size: 16px;
-	margin: 20px 0 0 0;
-	padding: 0;
-	border-bottom: 1px solid #5E7FBB;
+.description {
+	background-color: #f1f1f1;
+	font-size: 13px;
+	width: 95%;
+	margin: 25px 0 10px 0;
+	padding: 2px 10px;
+	border: 1px solid #aaa;
 }
 
 #page {
 	width: 100%;
-	text-align: right;	
+	text-align: right;
 }
-#page a {
-	padding: 0 10px;	
+
+div.comments {
+	font-size: 13px;
+	padding: 10px 0 0 15px;
 }
-.general {
-	float:left;
-	width: 280px;
-	padding: 0;
-	margin-bottom: 20px;
+
+#page a  , div.comments a {
+	padding: 0 10px;
 }
-.general span {
+
+.plugindetails {
+	width: 95%;
+	font-size: 13px;
+	padding: 2px 10px;
+	margin: 0;
+	background-color: #D1D6DF;
+	border: 1px solid #5E7FBB;
+}
+
+.plugindetails span {
+	padding: 0 10px 0 0;
 	font-weight: bold;
+}
+
+.versiondetails a,.versiondetails span {
+	float: left;
+	font-weight: normal;
+	width: 30%;
+	margin: 10px 5px 0 0;
+}
+
+.comments span {
+	float: none;
+	font-weight: bold;
+	margin: 0;
+	width: 330%;
 }
 
 #tabsJ {
@@ -141,10 +161,10 @@ text-align: right;
 	color: #FFF;
 }
 
- /*  styles for the unit rater     */ 
- .ratingblock {
+/*  styles for the unit rater     */
+.ratingblock {
 	display: block;
-	width:100%;
+	width: 100%;
 	padding: 0;
 }
 
@@ -287,4 +307,45 @@ text-align: right;
 
 .static {
 	color: #5D3126;
+}
+
+form.commentform {
+	width: 520px;
+	margin-left: 30px;
+}
+
+form.commentform label,form.commentform input {
+	float: left;
+	font-size: 13px;
+	height: 18px;
+	width: 250px;
+	margin-bottom: 3px;
+}
+
+form.commentform button {
+	width: 150px;
+	border-color: 1px solid #5E7FBB;
+}
+
+form.commentform button:hover {
+	border-color: 1px solid #ccc;
+	background-color: #5E7FBB;
+}
+
+#message {
+	background-color: #f00;
+	border: 1px solid #bbb;
+	color: #fff;
+	width: 495px;
+	padding: 5px;
+	margin: 0 0 10px 30px;
+}
+
+#success {
+	background-color: #0f0;
+	border: 1px solid #bbb;
+	color: #fff;
+	width: 500px;
+	padding: 5px;
+	margin: 0 0 10px 50px;
 }

@@ -1,6 +1,5 @@
 <?php
 
-
 /* sorting plugins */
 preg_match_all('%^plugins/?$%i', $url, $result, PREG_PATTERN_ORDER);
 if ($result[0]) {

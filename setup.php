@@ -24,14 +24,14 @@ if (!tableexists('plugin_details')) {
     $query = "
    CREATE TABLE `plugin_details` (
 		`pluginid` INT(11) NOT NULL AUTO_INCREMENT ,
-		`pd_userid` INT(11) NOT NULL ,
-		`pd_name` VARCHAR(100) NOT NULL ,
-		`pd_author` VARCHAR(100) NOT NULL ,
-		`pd_website` VARCHAR(100) NOT NULL ,
-		`pd_license` VARCHAR(100) NOT NULL ,
-		`pd_description` TEXT NULL ,
-		`pd_demolink` VARCHAR(100) NULL ,
-		`pd_tags` VARCHAR(255) NOT NULL,
+		`pd_userid` INT(11) NOT NULL default '0',
+		`pd_name` VARCHAR(100) NOT NULL default '',
+		`pd_author` VARCHAR(100) NOT NULL default '',
+		`pd_website` VARCHAR(100) NOT NULL default '',
+		`pd_license` VARCHAR(100) NOT NULL default '',
+		`pd_description` TEXT NULL,
+		`pd_demolink` VARCHAR(100) NULL,
+		`pd_tags` VARCHAR(255) NOT NULL default '',
 		 PRIMARY KEY  (`pluginid`)
 		) ENGINE = MyISAM;
 	";
@@ -44,15 +44,17 @@ if (!tableexists('plugin_version')) {
     $query = "
    CREATE TABLE `plugin_version` (
 		`pluginversionid` INT(11) NOT NULL AUTO_INCREMENT ,
-		`pv_pluginid` INT(11) NOT NULL ,
-		`pv_version` VARCHAR(100) NOT NULL ,
+		`pv_pluginid` INT(11) NOT NULL default '0',
+		`pv_version` VARCHAR(100) NOT NULL default '',
 		`pv_datetime` INT(11) NOT NULL default '0',
-		`pv_releasenotes` TEXT NOT NULL ,
+		`pv_releasenotes` TEXT NOT NULL default '',
 		`pv_status` ENUM('stable','beta' ,'developer', 'alpha') NULL ,
-		`pv_file` VARCHAR(100) NULL ,
+		`pv_file_zip` VARCHAR(100) NULL ,
+		`pv_file_tgz` VARCHAR(100) NULL ,
+		`pv_file_7z` VARCHAR(100) NULL ,
 		`pv_downloads` int(11) NULL ,
-		`total_votes` int(11) NOT NULL default 0,
-    	`total_value` int(11) NOT NULL default 0,
+		`total_votes` int(11) NOT NULL default '0',
+    	`total_value` int(11) NOT NULL default '0',
     	`used_ips` longtext,
 		 PRIMARY KEY  (`pluginversionid`)
 		) ENGINE = MyISAM;
@@ -65,10 +67,10 @@ if (!tableexists('plugin_comments')) {
     $query = "
    CREATE TABLE `plugin_comments` (
 		`plugincommentsid` INT(11) NOT NULL AUTO_INCREMENT ,
-		`pc_pluginversionid` INT(11) NOT NULL ,
+		`pc_pluginversionid` INT(11) NOT NULL default '0',
 		`pc_comment` TEXT NULL default '',
-		`pc_email` VARCHAR(100) NOT NULL ,
-		`pc_name` VARCHAR(100) NOT NULL ,
+		`pc_email` VARCHAR(100) NOT NULL default '',
+		`pc_name` VARCHAR(100) NOT NULL default '',
 		`pc_datetime` INT(11) NOT NULL default '0',
 		 PRIMARY KEY  (`plugincommentsid`)
 		) ENGINE = MyISAM;
