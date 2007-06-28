@@ -85,3 +85,9 @@ if (count($data) == 0) {
     JOJO::insertQuery("INSERT INTO page SET pg_title='Plugins', pg_link='jojo_pluginmanager.php', pg_url='plugins'");
 }
 
+$data = JOJO::selectQuery("SELECT * FROM page WHERE pg_link='jojo_pluginupload.php'");
+if (count($data) == 0) {
+    echo "Adding <b>Plugins</b> Page to menu<br />";
+    JOJO::insertQuery("INSERT INTO page SET pg_title='Plugin Upload', pg_link='jojo_pluginupload.php', pg_url='plugins/plugin-upload'");
+}
+

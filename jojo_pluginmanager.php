@@ -24,8 +24,7 @@ class JOJO_Plugin_Jojo_pluginmanager extends JOJO_Plugin
 	function _getContent()
 	{
 		global $smarty;
-		$content = array();
-
+		$content = array();	
 		/* that's the number of plugins shown per page */
 		$pluginsPerPage = 10;
 

@@ -1,27 +1,18 @@
 <?php
 
-/* sorting plugins */
+/* sorting plugins 
 preg_match_all('%^plugins/?$%i', $url, $result, PREG_PATTERN_ORDER);
 if ($result[0]) {
     $ret['url'] = 'plugins';
     unset($_SESSION['sort']);
     return $ret;
-}
-
+}*/       
 
 /* sorting plugins */
-preg_match_all('%^plugins/([0-9a-z-_\s]+)/?$%i', $url, $result, PREG_PATTERN_ORDER);
+preg_match_all('%^plugins/([a-z])/?$%i', $url, $result, PREG_PATTERN_ORDER);
 if ($result[0]) {
 	$_GET['sort'] = $result[1][0];
-	$_GET['id'] = $result[2][0];
-    $ret['url'] = 'plugins';
-    return $ret;
-}
-
-/* rating  */
-preg_match_all('%^db.php/([0-9a-z-_\s]+)/?$%i', $url, $result, PREG_PATTERN_ORDER);
-if ($result[0]) {
-	$_GET['sort'] = $result[1][0];
+	$_GET['id'] = $result[2][0];	
     $ret['url'] = 'plugins';
     return $ret;
 }
@@ -96,6 +87,4 @@ if ($result[0]) {
     return $ret;
 }
 
-
-
-
+ 

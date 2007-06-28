@@ -1,3 +1,5 @@
+<a href="plugins/plugin-upload/"><span>Upload a new plugin</span></a>
+
 
 {if $action eq 'all'  OR $action eq 'tags'  }
 <div id="tabsJ">
@@ -205,7 +207,6 @@
 
 {/if}
 {/if}
-
 
 <script type="text/javascript">
 {literal}
