@@ -64,7 +64,7 @@
     </div>
     <br style="clear:both;">
     <div class="description">
-        {foreach item=weight key=tag from=$tags}<a style='font-size:{$weight*16+14}px' href="plugins/tags/{$tag}">{$tag}</a> {/foreach}
+        {foreach item=weight key=tag from=$tags}<a style='font-size:{$weight*16+14}px; text-decoration: underline; margin: 3px;' href="plugins/tags/{$tag}">{$tag}</a> {/foreach}
     </div>
 {elseif $action eq 'details'}
 
