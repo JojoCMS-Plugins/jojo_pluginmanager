@@ -1,7 +1,7 @@
 <?php
 
 /* Show plugin details*/
-preg_match_all('%^plugins/details/([0-9]+)/(.*)?$%i', $url, $result, PREG_PATTERN_ORDER);
+preg_match_all('%^plugins/details/([0-9]+)/?(.*)?$%i', $url, $result, PREG_PATTERN_ORDER);
 if ($result[1]) {
     $_GET['action'] = 'details';
     $_GET['id'] = $result[1][0];
