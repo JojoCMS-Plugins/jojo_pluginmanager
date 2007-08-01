@@ -11,8 +11,8 @@ $fields[$f]['value'] = '';                              //A default value if any
 $fields[$f]['options'] = array('option 1','option 2');  //An array of options. Required for 'checkboxes' type
 $fields[$f]['rows'] = '15';                             //number of rows - only needed for textareas
 $fields[$f]['cols'] = '40'; 							 //number of columns - only needed for textareas
-$fields[$f]['comment'] = '';     						// particular advice for a special form field    
-$fields[$f]['change'] = '';                  
+$fields[$f]['comment'] = '';     						// particular advice for a special form field
+$fields[$f]['change'] = '';
 */
 
 $from_name_fields = array('pluginname','author', 'webssite' ,'demolink', 'description', 'tags' , 'releasenotes' ,'status', 'file1','file2','file3' ,'pluginversion'); //this is an array of all fields to be used
@@ -25,7 +25,7 @@ $fields[$f]['validation'] = '';
 $fields[$f]['type'] = 'text';
 $fields[$f]['size'] = 30;
 $fields[$f]['value'] = '';
-$fields[$f]['change'] = false;  
+$fields[$f]['change'] = false;
 ++$f;
 $fields[$f]['field'] = 'author';
 $fields[$f]['display'] = 'Author';
@@ -34,7 +34,7 @@ $fields[$f]['validation'] = '';
 $fields[$f]['type'] = 'text';
 $fields[$f]['size'] = 30;
 $fields[$f]['value'] = '';
-$fields[$f]['change'] = false;  
+$fields[$f]['change'] = false;
 
 ++$f;
 $fields[$f]['field'] = 'website';
@@ -44,7 +44,7 @@ $fields[$f]['validation'] = 'url';
 $fields[$f]['type'] = 'text';
 $fields[$f]['size'] = 30;
 $fields[$f]['value'] = '';
-$fields[$f]['change'] = false;  
+$fields[$f]['change'] = false;
 
 ++$f;
 $fields[$f]['field'] = 'demolink';
@@ -54,7 +54,7 @@ $fields[$f]['validation'] = 'url';
 $fields[$f]['type'] = 'text';
 $fields[$f]['size'] = '30';
 $fields[$f]['value'] = '';
-$fields[$f]['change'] = false;  
+$fields[$f]['change'] = false;
 
 ++$f;
 $fields[$f]['field'] = 'license';
@@ -64,7 +64,7 @@ $fields[$f]['validation'] = '';
 $fields[$f]['type'] = 'text';
 $fields[$f]['size'] = '30';
 $fields[$f]['value'] = '';
-$fields[$f]['change'] = false;  
+$fields[$f]['change'] = false;
 
 ++$f;
 $fields[$f]['field'] = 'description';
@@ -75,18 +75,19 @@ $fields[$f]['type'] = 'textarea';
 $fields[$f]['rows'] = '10';
 $fields[$f]['cols'] = '40';
 $fields[$f]['value'] = '';
-$fields[$f]['change'] = false;  
+$fields[$f]['change'] = false;
 
 ++$f;
 $fields[$f]['field'] = 'tags';
 $fields[$f]['display'] = 'Tags';
 $fields[$f]['required'] = true;
 $fields[$f]['validation'] = '';
-$fields[$f]['type'] = 'text';
-$fields[$f]['size'] = '30';
+$fields[$f]['type'] = 'textarea';
+$fields[$f]['rows'] = '5';
+$fields[$f]['cols'] = '40';
 $fields[$f]['value'] = '';
 $fields[$f]['comment'] = 'Please enter specified tags for your plugin comma sperated.';
-$fields[$f]['change'] = false;  
+$fields[$f]['change'] = false;
 
 ++$f;
 $fields[$f]['field'] = 'pluginversion';
@@ -97,7 +98,7 @@ $fields[$f]['type'] = 'text';
 $fields[$f]['size'] = '30';
 $fields[$f]['value'] = '';
 $fields[$f]['comment'] = 'Please enter the versionnumber in this format: major release.minor release.patch level - 1.2.1';
-$fields[$f]['change'] = true;  
+$fields[$f]['change'] = true;
 
 ++$f;
 $fields[$f]['field'] = 'releasenotes';
@@ -108,7 +109,7 @@ $fields[$f]['type'] = 'textarea';
 $fields[$f]['rows'] = '10';
 $fields[$f]['cols'] = '40';
 $fields[$f]['value'] = '';
-$fields[$f]['change'] = true;  
+$fields[$f]['change'] = true;
 
 ++$f;
 $fields[$f]['field'] = 'status';
@@ -120,7 +121,7 @@ $fields[$f]['options'] = array('stable','alpha' , 'beta' , 'developer');
 $fields[$f]['rows'] = '15';
 $fields[$f]['cols'] = '40';
 $fields[$f]['value'] = '';
-$fields[$f]['change'] = true;  
+$fields[$f]['change'] = true;
 
 ++$f;
 $fields[$f]['field'] = 'file1';
@@ -131,7 +132,7 @@ $fields[$f]['type'] = 'file';
 $fields[$f]['size'] = '30';
 $fields[$f]['value'] = '';
 $fields[$f]['comment'] = 'It is possible to upload 3 different archive files. The extension has to be tgz, zip or 7z.';
-$fields[$f]['change'] = true;  
+$fields[$f]['change'] = true;
 
 ++$f;
 $fields[$f]['field'] = 'file2';
@@ -141,7 +142,7 @@ $fields[$f]['validation'] = 'file';
 $fields[$f]['type'] = 'file';
 $fields[$f]['size'] = '30';
 $fields[$f]['value'] = '';
-$fields[$f]['change'] = true;  
+$fields[$f]['change'] = true;
 
 ++$f;
 $fields[$f]['field'] = 'file3';
@@ -151,6 +152,6 @@ $fields[$f]['validation'] = 'file';
 $fields[$f]['type'] = 'file';
 $fields[$f]['size'] = '30';
 $fields[$f]['value'] = '';
-$fields[$f]['change'] = true;  
+$fields[$f]['change'] = true;
 
 

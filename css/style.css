@@ -1,358 +1,358 @@
 .hidden {
-	display: none;
+    display: none;
 }
 
 table.detailsTable {
-	font-size: 13px;
-	margin: 0;
+    font-size: 13px;
+    margin: 0;
+    width: 100%;
 }
 
 table.detailsTable caption {
-	margin-top: 20px;
-	font-size: 15px;
-	font-weight: bold;
-	text-align: left;
+    margin-top: 20px;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: left;
 }
 
 table.detailsTable th {
-	background-color: #ddd;
-	color: #5E7FBB;
-	width: 125px;
-	text-align: left;
-	padding-left: 15px;
+    background-color: #ddd;
+    color: #5E7FBB;
+    text-align: left;
+    padding-left: 15px;
 }
 
 table.detailsTable tr td {
-	padding-left: 15px;
-	padding-top: 10px;
+    padding-left: 15px;
+    padding-top: 10px;
 }
 
 tr.description td {
-	border: 1px solid #ccc;
-	padding-bottom: 10px;
+    border: 1px solid #ccc;
+    padding-bottom: 10px;
 }
 
 tr.description td span,div.lastComment span,.versiondetails span,.releasenotes p span {
-	font-weight: bold;
-	padding: 0;
+    font-weight: bold;
+    padding: 0;
 }
 
 td.stars {
-	width: 170px;
+    width: 170px;
 }
 
 .stars {
-	width: 170px;
-	padding-top: 10px;
+    width: 170px;
+    padding-top: 10px;
 }
 
 div.releasenotes {
-	padding: 10px 0;
-	margin-bottom: 10px;
-	border-bottom: 1px solid #5E7FBB;
+    padding: 10px 0;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #5E7FBB;
 }
 
 .releasenotes a, .right {
-	text-align: right;
+    text-align: right;
 }
 
 .description {
-	background-color: #f1f1f1;
-	font-size: 13px;
-	width: 95%;
-	margin: 25px 0 10px 0;
-	padding: 2px 10px;
-	border: 1px solid #aaa;
+    background-color: #f1f1f1;
+    font-size: 13px;
+    width: 95%;
+    margin: 25px 0 10px 0;
+    padding: 2px 10px;
+    border: 1px solid #aaa;
 }
 
 #page {
-	width: 100%;
-	text-align: right;
+    width: 100%;
+    text-align: right;
 }
 
 div.comments {
-	font-size: 13px;
-	padding: 10px 0 0 15px;
+    font-size: 13px;
+    padding: 10px 0 0 15px;
 }
 
 #page a  , div.comments a {
-	padding: 0 10px;
+    padding: 0 10px;
 }
 
 .plugindetails {
-	width: 95%;
-	font-size: 13px;
-	padding: 2px 10px;
-	margin: 0;
-	background-color: #D1D6DF;
-	border: 1px solid #5E7FBB;
+    width: 95%;
+    font-size: 13px;
+    padding: 2px 10px;
+    margin: 0;
+    background-color: #D1D6DF;
+    border: 1px solid #5E7FBB;
 }
 
 .plugindetails span {
-	padding: 0 10px 0 0;
-	font-weight: bold;
+    padding: 0 10px 0 0;
+    font-weight: bold;
 }
 
 .versiondetails a,.versiondetails span {
-	float: left;
-	font-weight: normal;
-	width: 30%;
-	margin: 10px 5px 0 0;
+    float: left;
+    font-weight: normal;
+    width: 30%;
+    margin: 10px 5px 0 0;
 }
 
 .comments span {
-	float: none;
-	font-weight: bold;
-	margin: 0;
-	width: 330%;
+    float: none;
+    font-weight: bold;
+    margin: 0;
+    width: 330%;
 }
 
 #tabsJ {
-	float: left;
-	width: 600px;
-	font-size: 93%;
-	line-height: normal;
-	border-bottom: 2px solid #24618E;
-	margin-top: 20px;
+    float: left;
+    width: 600px;
+    font-size: 93%;
+    line-height: normal;
+    border-bottom: 2px solid #24618E;
+    margin-top: 20px;
 }
 
 #tabsJ ul {
-	margin: 0;
-	padding: 10px 10px 0 0px;
-	list-style: none;
+    margin: 0;
+    padding: 10px 10px 0 0px;
+    list-style: none;
 }
 
 #tabsJ li {
-	display: inline;
-	margin: 0;
-	padding: 0;
+    display: inline;
+    margin: 0;
+    padding: 0;
 }
 
 #tabsJ a {
-	float: left;
-	background: url("../images/tableftJ.gif") no-repeat left top;
-	margin: 0;
-	padding: 0 0 0 5px;
-	text-decoration: none;
+    float: left;
+    background: url("../images/tableftJ.gif") no-repeat left top;
+    margin: 0;
+    padding: 0 0 0 5px;
+    text-decoration: none;
 }
 
 #tabsJ a span {
-	float: left;
-	display: block;
-	background: url("../images/tabrightJ.gif") no-repeat right top;
-	padding: 5px 15px 4px 6px;
-	color: #24618E;
+    float: left;
+    display: block;
+    background: url("../images/tabrightJ.gif") no-repeat right top;
+    padding: 5px 15px 4px 6px;
+    color: #24618E;
 }
 
 #tabsJ a:hover {
-	background-position: 0% -42px;
+    background-position: 0% -42px;
 }
 
 #tabsJ a:hover span {
-	background-position: 100% -42px;
+    background-position: 100% -42px;
 }
 
 #tabsJ #current a {
-	background-position: 0% -42px;
+    background-position: 0% -42px;
 }
 
 #tabsJ #current a span {
-	background-position: 100% -42px;
-	color: #FFF;
+    background-position: 100% -42px;
+    color: #FFF;
 }
 
 /*  styles for the unit rater     */
 .ratingblock {
-	display: block;
-	width: 100%;
-	padding: 0;
+    display: block;
+    width: 100%;
+    padding: 0;
 }
 
 .loading {
-	height: 20px;
-	background: url('../images/working.gif') 50% 50% no-repeat;
+    height: 20px;
+    background: url('../images/working.gif') 50% 50% no-repeat;
 }
 
 .unit-rating { /* the UL */
-	list-style: none;
-	margin: 0px;
-	padding: 0px;
-	height: 20px;
-	position: relative;
-	background: url('../images/starrating.gif') top left repeat-x;
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    height: 20px;
+    position: relative;
+    background: url('../images/starrating.gif') top left repeat-x;
 }
 
 .unit-rating li {
-	text-indent: -90000px;
-	padding: 0px;
-	margin: 0px;
-	float: left;
+    text-indent: -90000px;
+    padding: 0px;
+    margin: 0px;
+    float: left;
 }
 
 .unit-rating li a {
-	outline: none;
-	display: block;
-	width: 20px;
-	height: 20px;
-	text-decoration: none;
-	text-indent: -9000px;
-	z-index: 20;
-	position: absolute;
-	padding: 0px;
+    outline: none;
+    display: block;
+    width: 20px;
+    height: 20px;
+    text-decoration: none;
+    text-indent: -9000px;
+    z-index: 20;
+    position: absolute;
+    padding: 0px;
 }
 
 .unit-rating li a:hover {
-	background: url('../images/starrating.gif') left center;
-	z-index: 2;
-	left: 0px;
+    background: url('../images/starrating.gif') left center;
+    z-index: 2;
+    left: 0px;
 }
 
 .unit-rating a.r1-unit {
-	left: 0px;
+    left: 0px;
 }
 
 .unit-rating a.r1-unit:hover {
-	width: 20px;
+    width: 20px;
 }
 
 .unit-rating a.r2-unit {
-	left: 20px;
+    left: 20px;
 }
 
 .unit-rating a.r2-unit:hover {
-	width: 40px;
+    width: 40px;
 }
 
 .unit-rating a.r3-unit {
-	left: 40px;
+    left: 40px;
 }
 
 .unit-rating a.r3-unit:hover {
-	width: 60px;
+    width: 60px;
 }
 
 .unit-rating a.r4-unit {
-	left: 60px;
+    left: 60px;
 }
 
 .unit-rating a.r4-unit:hover {
-	width: 80px;
+    width: 80px;
 }
 
 .unit-rating a.r5-unit {
-	left: 80px;
+    left: 80px;
 }
 
 .unit-rating a.r5-unit:hover {
-	width: 100px;
+    width: 100px;
 }
 
 .unit-rating a.r6-unit {
-	left: 100px;
+    left: 100px;
 }
 
 .unit-rating a.r6-unit:hover {
-	width: 120px;
+    width: 120px;
 }
 
 .unit-rating a.r7-unit {
-	left: 120px;
+    left: 120px;
 }
 
 .unit-rating a.r7-unit:hover {
-	width: 140px;
+    width: 140px;
 }
 
 .unit-rating a.r8-unit {
-	left: 140px;
+    left: 140px;
 }
 
 .unit-rating a.r8-unit:hover {
-	width: 160px;
+    width: 160px;
 }
 
 .unit-rating a.r9-unit {
-	left: 160px;
+    left: 160px;
 }
 
 .unit-rating a.r9-unit:hover {
-	width: 180px;
+    width: 180px;
 }
 
 .unit-rating a.r10-unit {
-	left: 180px;
+    left: 180px;
 }
 
 .unit-rating a.r10-unit:hover {
-	width: 200px;
+    width: 200px;
 }
 
 .unit-rating li.current-rating {
-	background: url('../images/starrating.gif') left bottom;
-	position: absolute;
-	height: 20px;
-	display: block;
-	text-indent: -9000px;
-	z-index: 1;
+    background: url('../images/starrating.gif') left bottom;
+    position: absolute;
+    height: 20px;
+    display: block;
+    text-indent: -9000px;
+    z-index: 1;
 }
 
 .voted {
-	color: #999;
-	width: 100%;
+    color: #999;
+    width: 100%;
 }
 
 .thanks {
-	color: #36AA3D;
+    color: #36AA3D;
 }
 
 .static {
-	color: #5D3126;
+    color: #5D3126;
 }
 
 form.commentform {
-	width: 520px;
-	margin-left: 30px;
+    width: 520px;
+    margin-left: 30px;
 }
 
 form.commentform label,form.commentform input {
-	float: left;
-	font-size: 13px;
-	height: 18px;
-	width: 250px;
-	margin-bottom: 3px;
+    float: left;
+    font-size: 13px;
+    height: 18px;
+    width: 250px;
+    margin-bottom: 3px;
 }
 
 form.commentform button {
-	width: 150px;
-	border-color: 1px solid #5E7FBB;
+    width: 150px;
+    border-color: 1px solid #5E7FBB;
 }
 
 form.commentform button:hover {
-	border-color: 1px solid #ccc;
-	background-color: #5E7FBB;
+    border-color: 1px solid #ccc;
+    background-color: #5E7FBB;
 }
 
 div.upload {
-margin-top: 20px; 
+margin-top: 20px;
 border: 1px solid #5E7FBB;
 padding: 10px;
 }
 
 
 #message {
-	background-color: #f00;
-	border: 1px solid #bbb;
-	color: #fff;
-	width: 495px;
-	padding: 5px;
-	margin: 0 0 10px 30px;
+    background-color: #f00;
+    border: 1px solid #bbb;
+    color: #fff;
+    width: 495px;
+    padding: 5px;
+    margin: 0 0 10px 30px;
 }
 
 #success {
-	background-color: #0f0;
-	border: 1px solid #bbb;
-	color: #fff;
-	width: 500px;
-	padding: 5px;
-	margin: 0 0 10px 50px;
+    background-color: #0f0;
+    border: 1px solid #bbb;
+    color: #fff;
+    width: 500px;
+    padding: 5px;
+    margin: 0 0 10px 50px;
 }

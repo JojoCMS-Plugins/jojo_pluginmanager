@@ -3,86 +3,86 @@
    of Simon Willison (see comments by Simon below).
 
    Description:
-   	
-   	Uses css selectors to apply javascript behaviours to enable
-   	unobtrusive javascript in html documents.
-   	
-   Usage:   
-   
-	var myrules = {
-		'b.someclass' : function(element){
-			element.onclick = function(){
-				alert(this.innerHTML);
-			}
-		},
-		'#someid u' : function(element){
-			element.onmouseover = function(){
-				this.innerHTML = "BLAH!";
-			}
-		}
-	};
-	
-	Behaviour.register(myrules);
-	
-	// Call Behaviour.apply() to re-apply the rules (if you
-	// update the dom, etc).
+
+    Uses css selectors to apply javascript behaviours to enable
+    unobtrusive javascript in html documents.
+
+   Usage:
+
+    var myrules = {
+        'b.someclass' : function(element){
+            element.onclick = function(){
+                alert(this.innerHTML);
+            }
+        },
+        '#someid u' : function(element){
+            element.onmouseover = function(){
+                this.innerHTML = "BLAH!";
+            }
+        }
+    };
+
+    Behaviour.register(myrules);
+
+    // Call Behaviour.apply() to re-apply the rules (if you
+    // update the dom, etc).
 
    License:
-   
-   	This file is entirely BSD licensed.
-   	
+
+    This file is entirely BSD licensed.
+
    More information:
-   	
-   	http://ripcord.co.nz/behaviour/
-   	
-   Added by Jojo: 
+
+    http://ripcord.co.nz/behaviour/
+
+   Added by Jojo:
    this file contains the javascript source code of original files behaviour.js and rating.js
-   
-   	
-   
-*/   
+
+
+
+*/
 
 var Behaviour = {
-	list : new Array,
-	
-	register : function(sheet){
-		Behaviour.list.push(sheet);
-	},
-	
-	start : function(){
-		Behaviour.addLoadEvent(function(){
-			Behaviour.apply();
-		});
-	},
-	
-	apply : function(){
-		for (h=0;sheet=Behaviour.list[h];h++){
-			for (selector in sheet){
-				list = document.getElementsBySelector(selector);
-				
-				if (!list){
-					continue;
-				}
+    list : new Array,
 
-				for (i=0;element=list[i];i++){
-					sheet[selector](element);
-				}
-			}
-		}
-	},
-	
-	addLoadEvent : function(func){
-		var oldonload = window.onload;
-		
-		if (typeof window.onload != 'function') {
-			window.onload = func;
-		} else {
-			window.onload = function() {
-				oldonload();
-				func();
-			}
-		}
-	}
+    register : function(sheet){
+        Behaviour.list.push(sheet);
+    },
+
+    start : function(){
+        Behaviour.addLoadEvent(function(){
+            Behaviour.apply();
+        });
+    },
+
+    apply : function(){
+        for (h=0;sheet=Behaviour.list[h];h++){
+            for (selector in sheet){
+                list = document.getElementsBySelector(selector);
+
+                if (!list){
+                    continue;
+                }
+
+                for (i=0;element=list[i];i++){
+                    sheet[selector](element);
+                }
+            }
+        }
+    },
+
+    addLoadEvent : function(func){
+        var oldonload = window.onload;
+
+        if (typeof window.onload != 'function') {
+            window.onload = func;
+        } else {
+            window.onload = function() {
+                oldonload();
+                func();
+            }
+        }
+    }
 }
 
 Behaviour.start();
@@ -92,13 +92,13 @@ Behaviour.start();
 
    document.getElementsBySelector(selector)
    - returns an array of element objects from the current document
-     matching the CSS selector. Selectors can contain element names, 
+     matching the CSS selector. Selectors can contain element names,
      class names and ids and can be nested. For example:
-     
+
        elements = document.getElementsBySelect('div#main p a.external')
-     
-     Will return an array of all 'a' elements with 'external' in their 
-     class attribute that are contained inside 'p' elements that are 
+
+     Will return an array of all 'a' elements with 'external' in their
+     class attribute that are contained inside 'p' elements that are
      contained inside the 'div' element which has id="main"
 
    New in version 0.4: Support for CSS2 and CSS3 attribute selectors:
@@ -106,7 +106,7 @@ Behaviour.start();
 
    Version 0.4 - Simon Willison, March 25th 2003
    -- Works in Phoenix 0.5, Mozilla 1.3, Opera 7, Internet Explorer 6, Internet Explorer 5 on Windows
-   -- Opera 7 fails 
+   -- Opera 7 fails
 */
 
 function getAllChildren(e) {
@@ -199,7 +199,7 @@ document.getElementsBySelector = function(selector) {
         case '=': // Equality
           checkFunction = function(e) { return (e.getAttribute(attrName) == attrValue); };
           break;
-        case '~': // Match one of space seperated words 
+        case '~': // Match one of space seperated words
           checkFunction = function(e) { return (e.getAttribute(attrName).match(new RegExp('\\b'+attrValue+'\\b'))); };
           break;
         case '|': // Match start with value followed by optional hyphen
@@ -228,11 +228,11 @@ document.getElementsBySelector = function(selector) {
       // alert('Attribute Selector: '+tagName+' '+attrName+' '+attrOperator+' '+attrValue);
       continue; // Skip to next token
     }
-    
+
     if (!currentContext[0]){
-    	return;
+        return;
     }
-    
+
     // If we get here, token is JUST an element (not a class or ID selector)
     tagName = token;
     var found = new Array;
@@ -248,13 +248,13 @@ document.getElementsBySelector = function(selector) {
   return currentContext;
 }
 
-/* That revolting regular expression explained 
+/* That revolting regular expression explained
 /^(\w+)\[(\w+)([=~\|\^\$\*]?)=?"?([^\]"]*)"?\]$/
   \---/  \---/\-------------/    \-------/
     |      |         |               |
     |      |         |           The value
     |      |    ~,|,^,$,* or =
-    |   Attribute 
+    |   Attribute
    Tag
 */
 
@@ -262,72 +262,72 @@ document.getElementsBySelector = function(selector) {
 Page:           rating.js
 Created:        Aug 2006
 Last Mod:       Mar 11 2007
-Handles actions and requests for rating bars.	
---------------------------------------------------------- 
+Handles actions and requests for rating bars.
+---------------------------------------------------------
 ryan masuga, masugadesign.com
-ryan@masugadesign.com 
+ryan@masugadesign.com
 --------------------------------------------------------- */
 
 var xmlhttp
-	/*@cc_on @*/
-	/*@if (@_jscript_version >= 5)
-	  try {
-	  xmlhttp=new ActiveXObject("Msxml2.XMLHTTP")
-	 } catch (e) {
-	  try {
-	    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP")
-	  } catch (E) {
-	   xmlhttp=false
-	  }
-	 }
-	@else
-	 xmlhttp=false
-	@end @*/
-	if (!xmlhttp && typeof XMLHttpRequest!='undefined') {
-	 try {
-	  xmlhttp = new XMLHttpRequest();
-	 } catch (e) {
-	  xmlhttp=false
-	 }
-	}
-	function myXMLHttpRequest() {
-	  var xmlhttplocal;
-	  try {
-	    xmlhttplocal= new ActiveXObject("Msxml2.XMLHTTP")
-	 } catch (e) {
-	  try {
-	    xmlhttplocal= new ActiveXObject("Microsoft.XMLHTTP")
-	  } catch (E) {
-	    xmlhttplocal=false;
-	  }
-	 }
+    /*@cc_on @*/
+    /*@if (@_jscript_version >= 5)
+      try {
+      xmlhttp=new ActiveXObject("Msxml2.XMLHTTP")
+     } catch (e) {
+      try {
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP")
+      } catch (E) {
+       xmlhttp=false
+      }
+     }
+    @else
+     xmlhttp=false
+    @end @*/
+    if (!xmlhttp && typeof XMLHttpRequest!='undefined') {
+     try {
+      xmlhttp = new XMLHttpRequest();
+     } catch (e) {
+      xmlhttp=false
+     }
+    }
+    function myXMLHttpRequest() {
+      var xmlhttplocal;
+      try {
+        xmlhttplocal= new ActiveXObject("Msxml2.XMLHTTP")
+     } catch (e) {
+      try {
+        xmlhttplocal= new ActiveXObject("Microsoft.XMLHTTP")
+      } catch (E) {
+        xmlhttplocal=false;
+      }
+     }
 
-	if (!xmlhttplocal && typeof XMLHttpRequest!='undefined') {
-	 try {
-	  var xmlhttplocal = new XMLHttpRequest();
-	 } catch (e) {
-	  var xmlhttplocal=false;
-	  alert('couldn\'t create xmlhttp object');
-	 }
-	}
-	return(xmlhttplocal);
+    if (!xmlhttplocal && typeof XMLHttpRequest!='undefined') {
+     try {
+      var xmlhttplocal = new XMLHttpRequest();
+     } catch (e) {
+      var xmlhttplocal=false;
+      alert('couldn\'t create xmlhttp object');
+     }
+    }
+    return(xmlhttplocal);
 }
 
 function sndReq(vote,id_num,ip_num,units) {
-	var theUL = document.getElementById('unit_ul'+id_num); // the UL
-	
-	// switch UL with a loading div
-	theUL.innerHTML = '<div class="loading"></div>';
-	
+    var theUL = document.getElementById('unit_ul'+id_num); // the UL
+
+    // switch UL with a loading div
+    theUL.innerHTML = '<div class="loading"></div>';
+
     xmlhttp.open('get', 'rpc.php?j='+vote+'&q='+id_num+'&t='+ip_num+'&c='+units);
     xmlhttp.onreadystatechange = handleResponse;
-    xmlhttp.send(null);	
+    xmlhttp.send(null);
 }
 
 function handleResponse() {
   if(xmlhttp.readyState == 4){
-		if (xmlhttp.status == 200){
-       	
+        if (xmlhttp.status == 200){
+
         var response = xmlhttp.responseText;
         var update = new Array();
 
@@ -335,14 +335,14 @@ function handleResponse() {
             update = response.split('|');
             changeText(update[0], update[1]);
         }
-		}
+        }
     }
 }
 
 function changeText( div2show, text ) {
     // Detect Browser
     var IE = (document.all) ? 1 : 0;
-    var DOM = 0; 
+    var DOM = 0;
     if (parseInt(navigator.appVersion) >=5) {DOM=1};
 
     // Grab the content from the requested "div" and show it in the "container"
@@ -356,27 +356,27 @@ function changeText( div2show, text ) {
 
 /* =============================================================== */
 var ratingAction = {
-		'a.rater' : function(element){
-			element.onclick = function(){
+        'a.rater' : function(element){
+            element.onclick = function(){
 
-			var parameterString = this.href.replace(/.*\?(.*)/, "$1"); // onclick="sndReq('j=1&q=2&t=127.0.0.1&c=5');
-			var parameterTokens = parameterString.split("&"); // onclick="sndReq('j=1,q=2,t=127.0.0.1,c=5');
-			var parameterList = new Array();
+            var parameterString = this.href.replace(/.*\?(.*)/, "$1"); // onclick="sndReq('j=1&q=2&t=127.0.0.1&c=5');
+            var parameterTokens = parameterString.split("&"); // onclick="sndReq('j=1,q=2,t=127.0.0.1,c=5');
+            var parameterList = new Array();
 
-			for (j = 0; j < parameterTokens.length; j++) {
-				var parameterName = parameterTokens[j].replace(/(.*)=.*/, "$1"); // j
-				var parameterValue = parameterTokens[j].replace(/.*=(.*)/, "$1"); // 1
-				parameterList[parameterName] = parameterValue;
-			}
-			var theratingID = parameterList['q'];
-			var theVote = parameterList['j'];
-			var theuserIP = parameterList['t'];
-			var theunits = parameterList['c'];
-			
-			//for testing	alert('sndReq('+theVote+','+theratingID+','+theuserIP+','+theunits+')'); return false;
-			sndReq(theVote,theratingID,theuserIP,theunits); return false;		
-			}
-		}
-		
-	};
-register(ratingAction);
+            for (j = 0; j < parameterTokens.length; j++) {
+                var parameterName = parameterTokens[j].replace(/(.*)=.*/, "$1"); // j
+                var parameterValue = parameterTokens[j].replace(/.*=(.*)/, "$1"); // 1
+                parameterList[parameterName] = parameterValue;
+            }
+            var theratingID = parameterList['q'];
+            var theVote = parameterList['j'];
+            var theuserIP = parameterList['t'];
+            var theunits = parameterList['c'];
+
+            //for testing	alert('sndReq('+theVote+','+theratingID+','+theuserIP+','+theunits+')'); return false;
+            sndReq(theVote,theratingID,theuserIP,theunits); return false;
+            }
+        }
+
+    };
+Behaviour.register(ratingAction);
