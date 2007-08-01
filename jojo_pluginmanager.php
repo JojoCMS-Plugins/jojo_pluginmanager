@@ -138,7 +138,7 @@ class JOJO_Plugin_Jojo_pluginmanager extends JOJO_Plugin
                 $content['title'] = "Details ".$plugindetails[0]['pd_name'];
                 $content['seotitle'] = 'Details of Plugin '.$plugindetails[0]['pd_name'];
                 $content['breadcrumbs'] = $breadcrumbs;
-                $content['content'] = $this->page['pg_body'].$smarty->fetch('jojo_pluginmanger.tpl');
+                $content['content'] = $smarty->fetch('jojo_pluginmanger.tpl');
                 return $content;
 
                 break;
@@ -242,7 +242,7 @@ class JOJO_Plugin_Jojo_pluginmanager extends JOJO_Plugin
                     $content['title'] = "Plugins tagged with ".$tag;
                     $content['seotitle'] = "Plugins tagged with ".$tag;
                     $content['breadcrumbs'] = $breadcrumbs;
-                    $content['content'] = $this->page['pg_body'].$smarty->fetch('jojo_pluginmanger.tpl');
+                    $content['content'] = $smarty->fetch('jojo_pluginmanger.tpl');
                     return $content;
                 } else {
                     /* Tag Cloud */
@@ -270,7 +270,7 @@ class JOJO_Plugin_Jojo_pluginmanager extends JOJO_Plugin
 
                     $smarty->assign('action', 'tagcloud');
                     $smarty->assign('tags', $tags);
-                    $content['content'] = $this->page['pg_body'] . $smarty->fetch('jojo_pluginmanger.tpl');
+                    $content['content'] = $smarty->fetch('jojo_pluginmanger.tpl');
                     return $content;
                 }
 
