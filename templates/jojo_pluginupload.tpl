@@ -2,8 +2,8 @@
 <div class="message">{$message}</div>
 {/if}
 
-{if $userplugins} 
-You already have submitted jojo plugins. 
+{if $userplugins}
+You already have submitted jojo plugins.
 If you click on one plugin, you can upload a new version or change the plugindetails
 <form method="post" name="plugin-upload" action="plugins/plugin-upload/">
 <select size="1" name="select-plugin">
@@ -23,19 +23,19 @@ If you click on one plugin, you can upload a new version or change the plugindet
 {if $version}
 {if $plugindetails}
 <h2>{if $plugindetails[0].pd_name}{$plugindetails[0].pd_name}{/if}</h2>
-		<div class="description">
-		{if $plugindetails[0].pd_description}{$plugindetails[0].pd_description}{/if}
-		</div>
-		<div class="plugindetails">
-		{if $plugindetails[0].pd_author}<span>Author: </span>{$plugindetails[0].pd_author}  {/if}<br />
-		{if $plugindetails[0].pd_website}<span>Website: </span>{$plugindetails[0].pd_website}  {/if}<br />
-		{if $plugindetails[0].pd_demolink}<span>Demolink: </span>{$plugindetails[0].pd_demolink}  {/if}<br />
-		{if $plugindetails[0].pd_license}<span>license: </span>{$plugindetails[0].pd_license}  {/if}<br />
-		{if $plugindetails[0].tags}<span>Tags: </span> {foreach item=tag from=$plugindetails[0].tags} <a href="plugins/{$tag}/tag">{$tag}</a> {/foreach}	{/if}
-		</div>
-		<input type="hidden" name="pluginid" id="pluginid" value="{$plugindetails[0].pluginid}" />
-			
-	{/if}
+        <div class="description">
+        {if $plugindetails[0].pd_description}{$plugindetails[0].pd_description}{/if}
+        </div>
+        <div class="plugindetails">
+        {if $plugindetails[0].pd_author}<span>Author: </span>{$plugindetails[0].pd_author}  {/if}<br />
+        {if $plugindetails[0].pd_website}<span>Website: </span>{$plugindetails[0].pd_website}  {/if}<br />
+        {if $plugindetails[0].pd_demolink}<span>Demolink: </span>{$plugindetails[0].pd_demolink}  {/if}<br />
+        {if $plugindetails[0].pd_license}<span>license: </span>{$plugindetails[0].pd_license}  {/if}<br />
+        {if $plugindetails[0].tags}<span>Tags: </span> {foreach item=tag from=$plugindetails[0].tags} <a href="plugins/{$tag}/tag">{$tag}</a> {/foreach}	{/if}
+        </div>
+        <input type="hidden" name="pluginid" id="pluginid" value="{$plugindetails[0].pluginid}" />
+
+    {/if}
 
 
 
@@ -77,31 +77,21 @@ If you click on one plugin, you can upload a new version or change the plugindet
 {/section}
 {/if}
 
-{if $OPTIONS.contactcaptcha == 'yes'}
-<label for="CAPTCHA">Spam prevention:</label>
-<div class="form-field">
-<input type="text" size="8" name="CAPTCHA" id="CAPTCHA" value="" /><br />
-Please enter the 3 letter code below. This helps us prevent spam.<br />
-<img src="external/php-captcha/visual-captcha.php" width="200" height="60" alt="Visual CAPTCHA" /><br />
-<em>Code is not case-sensitive</em></div>
-<br />
-{/if}
-
 <label>Submit Form:</label>
 <input type="submit" name="submit" value="Submit" class="button" />
 
 </div><br style="clear:style" />
 
-</form>	
-			
-You are logged in as {$username}. <a href="logout/"><img class="icon" src="images/cms/icons/status_offline.png" alt="" /></a> <a href="logout/">logout</a>  <a href="user-profile/"><img class="icon" src="images/cms/icons/user_edit.png" alt="" /></a> <a href="user-profile/">Edit Profile</a>			
-	
+</form>
+
+You are logged in as {$username}. <a href="logout/"><img class="icon" src="images/cms/icons/status_offline.png" alt="" /></a> <a href="logout/">logout</a>  <a href="user-profile/"><img class="icon" src="images/cms/icons/user_edit.png" alt="" /></a> <a href="user-profile/">Edit Profile</a>
+
 {else}<div id="login">
 <form method="post" action="{if $issecure}{$SECUREEURL}{else}{$SITEURL}{/if}/{$RELATIVE_URL}">
 <b>{$loginmessage|default:"You are not logged in."}</b> You can only upload a new plugin or pluginversion, if you are logged in with you username and password<br /><br />
 Username: <input type="text" name="username" size="10" value="{$username}" />
 <span class="login" title="Passwords are case-sensitive.">Password: <input type="password" size="10" name="password" value="{$password}" /></span>
-<span class="login" title="This option will log you in automatically from this computer."><input type="checkbox" name="remember" id="remember" value="1" onclick="{literal}javascript: if (this.checked) {alert('Your login details will be remembered by this computer for up to 14 days, or until you login from another computer, or until you logout. Please do not use this option if you are on a shared computer.')};{/literal}" {if $remember=="1"} checked{/if} /> <label for="remember">Remember Me</label></span> 
+<span class="login" title="This option will log you in automatically from this computer."><input type="checkbox" name="remember" id="remember" value="1" onclick="{literal}javascript: if (this.checked) {alert('Your login details will be remembered by this computer for up to 14 days, or until you login from another computer, or until you logout. Please do not use this option if you are on a shared computer.')};{/literal}" {if $remember=="1"} checked{/if} /> <label for="remember">Remember Me</label></span>
 
 <input type="submit" class="button" name="submit" value="Login &gt;&gt;" class="button" onmouseover="this.className='button buttonrollover';" onmouseout="this.className='button'" /> <br />
 <a href="forgot-password/" title="Options for recovering a lost password" rel="nofollow">Forgotten Password?</a>
@@ -117,22 +107,19 @@ function checkme()
   var i=0;
 {section name=f loop=$fields}
 
-	{if $fields[f].required AND  $fields[f].change}
-  		{if $fields[f].type == 'radio'}
-  		{section name=o loop=$options}
-  
-  		{/section}
- 		{else}
-  		if (document.getElementById('form_{$fields[f].field}').value == '') {literal}{{/literal}errors[i++]='{$fields[f].display} is a required field';{literal}}{/literal}
-  		{/if}
- 		{if $fields[f].validation=='email'} else if (!validateEmail(document.getElementById('form_{$fields[f].field}').value)) {literal}{{/literal}errors[i++]='{$fields[f].display} is not a valid email format';{literal}}{/literal}{/if}
-	{/if}
+    {if $fields[f].required AND  $fields[f].change}
+        {if $fields[f].type == 'radio'}
+        {section name=o loop=$options}
+
+        {/section}
+        {else}
+        if (document.getElementById('form_{$fields[f].field}').value == '') {literal}{{/literal}errors[i++]='{$fields[f].display} is a required field';{literal}}{/literal}
+        {/if}
+        {if $fields[f].validation=='email'} else if (!validateEmail(document.getElementById('form_{$fields[f].field}').value)) {literal}{{/literal}errors[i++]='{$fields[f].display} is not a valid email format';{literal}}{/literal}{/if}
+    {/if}
 
 {/section}
 
-{if $OPTIONS.contactcaptcha == 'yes'}
-	if (document.getElementById('CAPTCHA').value == '') {literal}{{/literal}errors[i++]='Please enter the CAPTCHA code (required to prevent spam)';{literal}}{/literal}
-{/if}
 if (document.getElementById('form_file1').value == '' && document.getElementById('form_file2').value == '' && document.getElementById('form_file3').value == '')
 {literal}{{/literal}errors[i++]='Please upload at least one archive file.';{literal}}{/literal}
 {literal}

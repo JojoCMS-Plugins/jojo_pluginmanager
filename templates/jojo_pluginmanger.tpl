@@ -1,5 +1,3 @@
-<a href="plugins/plugin-upload/"><span>Upload a new plugin</span></a>
-
 {if $action == 'all'}
 <div id="tabsJ">
     <ul>
