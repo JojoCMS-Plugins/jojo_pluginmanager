@@ -1,12 +1,12 @@
 {if $action == 'all'}
 <div id="tabsJ">
     <ul>
-    <li><a href="plugins/name"><span>Name</span></a></li>
-    <li><a href="plugins/updated"><span>Last Updated</span></a></li>
-    <li><a href="plugins/rating"><span>Rating</span></a></li>
-    <li><a href="plugins/downloads"><span>Download</span></a></li>
-    <li><a href="plugins/status"><span>Status</span></a></li>
-    <li><a href="plugins/tags"><span>Tags</span></a></li>
+        <li><a href="plugins/name" rel="nofollow"><span>Name</span></a></li>
+        <li><a href="plugins/updated" rel="nofollow"><span>Last Updated</span></a></li>
+        <li><a href="plugins/rating" rel="nofollow"><span>Rating</span></a></li>
+        <li><a href="plugins/downloads" rel="nofollow"><span>Download</span></a></li>
+        <li><a href="plugins/status" rel="nofollow"><span>Status</span></a></li>
+        <li><a href="plugins/tags" rel="nofollow"><span>Tags</span></a></li>
     </ul>
 </div>
 <br style="clear:both;">
@@ -19,7 +19,7 @@
         </tr>
         {foreach item=p from=$plugins}
         <tr>
-            <td valign='top'><a href="plugins/details/{$p.pluginid}">{if $p.pd_name} {$p.pd_name}{/if}</a><br />{if $p.pv_status}{$p.pv_status} Version{/if}</td>
+            <td valign='top'><a href="{$p.url}">{if $p.pd_name} {$p.pd_name}{/if}</a><br />{if $p.pv_status}{$p.pv_status} Version{/if}</td>
             <td valign='top' class="stars">{if $p.stars}{$p.stars}{/if}</td>
             <td valign='top'>{if $p.downloads}{$p.downloads}<br />{/if}
                 {if $p.pv_file_zip}<a href="plugins/download/{$p.pluginversionid}/{$p.pv_file_zip}">{$p.pv_file_zip}</a><br />{/if}
@@ -54,17 +54,17 @@
 {elseif $action == 'tagcloud'}
     <div id="tabsJ">
         <ul>
-        <li><a href="plugins/name"><span>Name</span></a></li>
-        <li><a href="plugins/updated"><span>Last Updated</span></a></li>
-        <li><a href="plugins/rating"><span>Rating</span></a></li>
-        <li><a href="plugins/downloads"><span>Download</span></a></li>
-        <li><a href="plugins/status"><span>Status</span></a></li>
-        <li><a href="plugins/tags"><span>Tags</span></a></li>
+        <li><a href="plugins/name" rel="nofollow"><span>Name</span></a></li>
+        <li><a href="plugins/updated" rel="nofollow"><span>Last Updated</span></a></li>
+        <li><a href="plugins/rating" rel="nofollow"><span>Rating</span></a></li>
+        <li><a href="plugins/downloads" rel="nofollow"><span>Download</span></a></li>
+        <li><a href="plugins/status" rel="nofollow"><span>Status</span></a></li>
+        <li><a href="plugins/tags" rel="nofollow"><span>Tags</span></a></li>
         </ul>
     </div>
     <br style="clear:both;">
     <div class="description">
-        {foreach item=weight key=tag from=$tags}<a style='font-size:{$weight*16+14}px; text-decoration: underline; margin: 3px;' href="plugins/tags/{$tag}">{$tag}</a> {/foreach}
+        {foreach item=weight key=tag from=$tags}<a style='font-size:{$weight*16+14}px; text-decoration: underline; margin: 3px;' href="plugins/tags/{$tag}" rel="nofollow">{$tag}</a> {/foreach}
     </div>
 {elseif $action eq 'details'}
 
@@ -77,7 +77,7 @@
         {if $pluginversions[0].pd_website}<span>Website: </span>{$pluginversions[0].pd_website}  {/if}<br />
         {if $pluginversions[0].pd_demolink}<span>Demolink: </span>{$pluginversions[0].pd_demolink}  {/if}<br />
         {if $pluginversions[0].pd_license}<span>License: </span>{$pluginversions[0].pd_license}  {/if}<br />
-        {if $pluginversions[0].tags}<span>Tags: </span> {foreach item=tag from=$pluginversions[0].tags} <a href="plugins/tags/{$tag}">{$tag}</a>{/foreach}	{/if}
+        {if $pluginversions[0].tags}<span>Tags: </span> {foreach item=tag from=$pluginversions[0].tags} <a href="plugins/tags/{$tag}" rel="nofollow">{$tag}</a>{/foreach}	{/if}
         </div>
     {/if}
 

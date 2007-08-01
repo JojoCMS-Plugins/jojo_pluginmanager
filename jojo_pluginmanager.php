@@ -229,6 +229,7 @@ class JOJO_Plugin_Jojo_pluginmanager extends JOJO_Plugin
                             $res[$k]['rating'] = $res[$k] ['total_value'] / $res[$k] ['total_votes'];
                         }
                         $res[$k]['tags'] = explode(',', strtolower($res[$k]['pd_tags']));
+                        $res[$k]['url'] = JOJO::rewrite('plugins/details', $res[$k]['pluginid'], $res[$k]['pd_name'], '');
                     }
                     $smarty->assign('action', 'all');
                     $smarty->assign('plugins', $res);
@@ -307,8 +308,8 @@ class JOJO_Plugin_Jojo_pluginmanager extends JOJO_Plugin
                 $res[$k]['rating'] = $res[$k] ['total_value'] / $res[$k] ['total_votes'];
             }
             $res[$k]['tags'] = explode(',', $res[$k]['pd_tags']);
+            $res[$k]['url'] = JOJO::rewrite('plugins/details', $res[$k]['pluginid'], $res[$k]['pd_name'], '');
         }
-
         return $res;
     }
 
