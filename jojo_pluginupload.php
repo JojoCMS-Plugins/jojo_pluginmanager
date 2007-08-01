@@ -121,10 +121,6 @@ class JOJO_Plugin_Jojo_pluginupload extends JOJO_Plugin
             $parts = explode("." , $_POST['form_pluginversion']);
             if (count($parts) > 3) {
                 $errors[] = "Wrong format for versionnumber.";
-            }else{
-                foreach ($parts as $p) {
-                    if (!is_numeric($p)) {$errors[] = "Wrong format for versionnumber - please use only mummeric signs.";}
-                }
             }
         }
 
