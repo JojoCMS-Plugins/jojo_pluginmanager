@@ -34,7 +34,7 @@ class JOJO_Plugin_Jojo_pluginmanager extends JOJO_Plugin
             case 'download':
                 $file = Util::getFormData('file', ''); // download plugin
                 $id = Util::getFormData('id', ''); // download plugin
-                $data = JOJO::selectQuery("SELECT  *  FROM plugin_version, plugin_details WHERE plugin_version.pluginversionid = ? AND plugin_version.pv_pluginid = plugin_details.pluginid LIMIT 1", $id);
+                $data = Jojo::selectQuery("SELECT  *  FROM plugin_version, plugin_details WHERE plugin_version.pluginversionid = ? AND plugin_version.pv_pluginid = plugin_details.pluginid LIMIT 1", $id);
                 $basedir = _DOWNLOADDIR."/plugins/".$data[0]['pd_name']."/".$data[0]['pv_version'];
                 $filename = sprintf("%s/%s", $basedir, $file);
                 $extension = getFileExtension($file);
@@ -50,7 +50,7 @@ class JOJO_Plugin_Jojo_pluginmanager extends JOJO_Plugin
                 @readfile($filename) or die("File not found.");
 
                 /* Update Downloadcounter */
-                JOJO::updateQuery("UPDATE plugin_version SET pv_downloads = pv_downloads+1 WHERE pluginversionid = ?", $id);
+                Jojo::updateQuery("UPDATE plugin_version SET pv_downloads = pv_downloads+1 WHERE pluginversionid = ?", $id);
                 break;
 
             case 'details':
@@ -89,7 +89,7 @@ class JOJO_Plugin_Jojo_pluginmanager extends JOJO_Plugin
                 }
                 /* view all details and comments of one pluginversion */
                 if ($versionid != '' ) {
-                    $plugindetails =  JOJO::selectQuery("SELECT * FROM plugin_version, plugin_details where plugin_version.pluginversionid = " . $versionid);
+                    $plugindetails =  Jojo::selectQuery("SELECT * FROM plugin_version, plugin_details where plugin_version.pluginversionid = " . $versionid);
                     $plugindetails[0]['date'] = relativeDate(convertTimeZone($plugindetails[$i]['pv_datetime'],$_SERVERTIMEZONE,$_USERTIMEZONE));
                     $plugindetails[0]['stars'] = rating_bar($plugindetails[0]['pluginversionid'], 5);
                     $plugindetails[0]['tags']= explode(',', $plugindetails[0]['pd_tags']);
@@ -105,11 +105,11 @@ class JOJO_Plugin_Jojo_pluginmanager extends JOJO_Plugin
                     /* view all versions of one plugin and the last comment*/
                 } elseif ($id != '') {
 
-                    $pluginversions = JOJO::selectQuery("SELECT * FROM plugin_version, plugin_details WHERE plugin_version.pv_pluginid = ? AND plugin_details.pluginid = ? ORDER BY pv_datetime DESC", array($id, $id));
+                    $pluginversions = Jojo::selectQuery("SELECT * FROM plugin_version, plugin_details WHERE plugin_version.pv_pluginid = ? AND plugin_details.pluginid = ? ORDER BY pv_datetime DESC", array($id, $id));
                     $versioncomments =array();
 
                     for ($i = 0 ; $i < sizeof($pluginversions); $i++ ){
-                        $versioncomments = JOJO::selectQuery("SELECT plugin_comments.* FROM plugin_comments, plugin_version WHERE plugin_comments.pc_pluginversionid = plugin_version.pluginversionid AND plugin_version.pluginversionid = ".$pluginversions[$i]['pluginversionid']." ORDER BY pc_datetime DESC");
+                        $versioncomments = Jojo::selectQuery("SELECT plugin_comments.* FROM plugin_comments, plugin_version WHERE plugin_comments.pc_pluginversionid = plugin_version.pluginversionid AND plugin_version.pluginversionid = ".$pluginversions[$i]['pluginversionid']." ORDER BY pc_datetime DESC");
 
                         if (count($versioncomments) > 1) {
 
@@ -132,7 +132,7 @@ class JOJO_Plugin_Jojo_pluginmanager extends JOJO_Plugin
                 $breadcrumb = array();
                 $breadcrumb['name'] = $breadcrumbname;
                 $breadcrumb['rollover'] = 'Details of Plugin '.$plugindetails[0]['pd_name'];
-                $breadcrumb['url'] =  JOJO::rewrite('plugins',$id,'details','');
+                $breadcrumb['url'] =  Jojo::rewrite('plugins',$id,'details','');
                 $breadcrumbs[count($breadcrumbs)] = $breadcrumb;
 
                 $content['title'] = "Details ".$plugindetails[0]['pd_name'];
@@ -221,7 +221,7 @@ class JOJO_Plugin_Jojo_pluginmanager extends JOJO_Plugin
                                       ORDER BY
                                         datetime ASC
                                       ", $tag);
-                    $res = JOJO::selectQuery($query);
+                    $res = Jojo::selectQuery($query);
                     foreach($res as $k => $v) {
                         $res[$k]['date'] = relativeDate(convertTimeZone($res[$k]['datetime'],$_SERVERTIMEZONE,$_USERTIMEZONE));
                         $res[$k]['stars'] = rating_bar($res[$k]['pluginversionid'], 5);
@@ -229,14 +229,14 @@ class JOJO_Plugin_Jojo_pluginmanager extends JOJO_Plugin
                             $res[$k]['rating'] = $res[$k] ['total_value'] / $res[$k] ['total_votes'];
                         }
                         $res[$k]['tags'] = explode(',', strtolower($res[$k]['pd_tags']));
-                        $res[$k]['url'] = JOJO::rewrite('plugins/details', $res[$k]['pluginid'], $res[$k]['pd_name'], '');
+                        $res[$k]['url'] = Jojo::rewrite('plugins/details', $res[$k]['pluginid'], $res[$k]['pd_name'], '');
                     }
                     $smarty->assign('action', 'all');
                     $smarty->assign('plugins', $res);
 
                     $breadcrumb['name'] = $tag;
                     $breadcrumb['rollover'] = "Plugins tagged with ".$tag;
-                    $breadcrumb['url'] =  JOJO::rewrite('plugins',$tag,'tag','');
+                    $breadcrumb['url'] =  Jojo::rewrite('plugins',$tag,'tag','');
                     $breadcrumbs[] = $breadcrumb;
 
                     $content['title'] = "Plugins tagged with ".$tag;
@@ -246,7 +246,7 @@ class JOJO_Plugin_Jojo_pluginmanager extends JOJO_Plugin
                     return $content;
                 } else {
                     /* Tag Cloud */
-                    $res = JOJO::selectQuery("SELECT pd_tags FROM plugin_details");
+                    $res = Jojo::selectQuery("SELECT pd_tags FROM plugin_details");
                     $tags = array();
                     foreach($res as $r) {
                         $restags = explode(',', strtolower($r['pd_tags']));
@@ -299,7 +299,7 @@ class JOJO_Plugin_Jojo_pluginmanager extends JOJO_Plugin
                           GROUP BY
                             plugin_version.pv_pluginid
                           ORDER BY %s %s", $sortBy, $sortDir);
-        $res = JOJO::selectQuery($query);
+        $res = Jojo::selectQuery($query);
 
         foreach($res as $k => $v) {
             $res[$k]['date'] = relativeDate(convertTimeZone($res[$k]['datetime'],$_SERVERTIMEZONE,$_USERTIMEZONE));
@@ -308,7 +308,7 @@ class JOJO_Plugin_Jojo_pluginmanager extends JOJO_Plugin
                 $res[$k]['rating'] = $res[$k] ['total_value'] / $res[$k] ['total_votes'];
             }
             $res[$k]['tags'] = explode(',', $res[$k]['pd_tags']);
-            $res[$k]['url'] = JOJO::rewrite('plugins/details', $res[$k]['pluginid'], $res[$k]['pd_name'], '');
+            $res[$k]['url'] = Jojo::rewrite('plugins/details', $res[$k]['pluginid'], $res[$k]['pd_name'], '');
         }
         return $res;
     }
@@ -343,7 +343,7 @@ class JOJO_Plugin_Jojo_pluginmanager extends JOJO_Plugin
             $errors .= 'The field Comment is empty<br/>';
         }
 
-        if (JOJO::getOption('contactcaptcha') == 'yes') {
+        if (Jojo::getOption('contactcaptcha') == 'yes') {
             $captchacode = Util::getFormData('CAPTCHA','');
             require_once(_BASEDIR.'/external/php-captcha/php-captcha.inc.php');
             if (!PhpCaptcha::Validate($captchacode)) {
@@ -351,8 +351,8 @@ class JOJO_Plugin_Jojo_pluginmanager extends JOJO_Plugin
             }
         }
         if ($errors === '') {
-            $name = JOJO::clean($_POST['firstname'])." ".JOJO::clean($_POST['name']);
-            JOJO::insertQuery("INSERT INTO plugin_comments SET pc_datetime='".strtotime('now')."', pc_pluginversionid = '".JOJO::clean($_POST['pluginversionid']) ."' , pc_comment = '".JOJO::clean($_POST['comment'])."' , pc_email = '".JOJO::clean($_POST['email'])."', pc_name ='".$name."' ");
+            $name = Jojo::clean($_POST['firstname'])." ".Jojo::clean($_POST['name']);
+            Jojo::insertQuery("INSERT INTO plugin_comments SET pc_datetime='".strtotime('now')."', pc_pluginversionid = '".Jojo::clean($_POST['pluginversionid']) ."' , pc_comment = '".Jojo::clean($_POST['comment'])."' , pc_email = '".Jojo::clean($_POST['email'])."', pc_name ='".$name."' ");
 
             return '';
         }

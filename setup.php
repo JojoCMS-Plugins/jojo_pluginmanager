@@ -35,7 +35,7 @@ if (!tableexists('plugin_details')) {
 		 PRIMARY KEY  (`pluginid`)
 		) ENGINE = MyISAM;
 	";
-    JOJO::updateQuery($query);
+    Jojo::updateQuery($query);
 }
 
 /* create plugin_version table */
@@ -59,7 +59,7 @@ if (!tableexists('plugin_version')) {
 		 PRIMARY KEY  (`pluginversionid`)
 		) ENGINE = MyISAM;
 	";
-    JOJO::updateQuery($query);
+    Jojo::updateQuery($query);
 }
 /* create plugin_version table */
 if (!tableexists('plugin_comments')) {
@@ -75,19 +75,19 @@ if (!tableexists('plugin_comments')) {
 		 PRIMARY KEY  (`plugincommentsid`)
 		) ENGINE = MyISAM;
 	";
-    JOJO::updateQuery($query);
+    Jojo::updateQuery($query);
 }
 
 /*create entry in page table */
-$data = JOJO::selectQuery("SELECT * FROM page WHERE pg_link='jojo_pluginmanager.php'");
+$data = Jojo::selectQuery("SELECT * FROM page WHERE pg_link='jojo_pluginmanager.php'");
 if (count($data) == 0) {
     echo "Adding <b>Plugins</b> Page to menu<br />";
-    JOJO::insertQuery("INSERT INTO page SET pg_title='Plugins', pg_link='jojo_pluginmanager.php', pg_url='plugins'");
+    Jojo::insertQuery("INSERT INTO page SET pg_title='Plugins', pg_link='jojo_pluginmanager.php', pg_url='plugins'");
 }
 
-$data = JOJO::selectQuery("SELECT * FROM page WHERE pg_link='jojo_pluginupload.php'");
+$data = Jojo::selectQuery("SELECT * FROM page WHERE pg_link='jojo_pluginupload.php'");
 if (count($data) == 0) {
     echo "Adding <b>Plugins</b> Page to menu<br />";
-    JOJO::insertQuery("INSERT INTO page SET pg_title='Plugin Upload', pg_link='jojo_pluginupload.php', pg_url='plugins/plugin-upload'");
+    Jojo::insertQuery("INSERT INTO page SET pg_title='Plugin Upload', pg_link='jojo_pluginupload.php', pg_url='plugins/plugin-upload'");
 }
 
