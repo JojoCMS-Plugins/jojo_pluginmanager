@@ -29,21 +29,12 @@ table.detailsTable tr td {
 
 tr.description td {
     border: 1px solid #ccc;
-    padding-bottom: 10px;
+    padding: 10px;
 }
 
 tr.description td span,div.lastComment span,.versiondetails span,.releasenotes p span {
     font-weight: bold;
     padding: 0;
-}
-
-td.stars {
-    width: 170px;
-}
-
-.stars {
-    width: 170px;
-    padding-top: 10px;
 }
 
 div.releasenotes {
@@ -60,7 +51,7 @@ div.releasenotes {
     background-color: #f1f1f1;
     font-size: 13px;
     width: 95%;
-    margin: 25px 0 10px 0;
+    margin: 0 0 10px 0;
     padding: 2px 10px;
     border: 1px solid #aaa;
 }

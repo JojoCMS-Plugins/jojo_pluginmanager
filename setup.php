@@ -24,7 +24,8 @@ $query = "
     `pd_userid` INT(11) NOT NULL default '0',
     `pd_name` VARCHAR(100) NOT NULL default '',
     `pd_author` VARCHAR(100) NOT NULL default '',
-    `pd_website` VARCHAR(100) NOT NULL default '',
+    `pd_website` VARCHAR(255) NOT NULL default '',
+    `pd_svn` VARCHAR(255) NOT NULL default '',
     `pd_license` VARCHAR(100) NOT NULL default '',
     `pd_description` TEXT NULL,
     `pd_demolink` VARCHAR(100) NULL,
@@ -67,7 +68,7 @@ if (!Jojo::tableexists('plugin_comments')) {
     $query = "
         CREATE TABLE {plugin_comments} (
         `plugincommentsid` INT(11) NOT NULL AUTO_INCREMENT ,
-        `pc_pluginversionid` INT(11) NOT NULL default '0',
+        `pc_pluginid` INT(11) NOT NULL default '0',
         `pc_comment` TEXT NULL default '',
         `pc_email` VARCHAR(100) NOT NULL default '',
         `pc_name` VARCHAR(100) NOT NULL default '',
@@ -91,3 +92,17 @@ if (count($data) == 0) {
     Jojo::insertQuery("INSERT INTO {page} SET pg_title='Plugin Upload', pg_link='jojo_plugin_jojo_pluginupload', pg_url='plugins/plugin-upload'");
 }
 
+
+// Edit Plugins
+$data = Jojo::selectQuery("SELECT * FROM {page} WHERE pg_url = 'admin/edit/plugin_details'");
+if (count($data) == 0) {
+    echo "Adding <b>Edit Plugins</b> Page to menu<br />";
+    Jojo::insertQuery("INSERT INTO {page} SET pg_title = 'Edit Plugins', pg_link = 'Jojo_Plugin_Admin_Edit', pg_url = 'admin/edit/plugin_details', pg_parent=" . Jojo::cleanInt($_ADMIN_CONTENT_ID) . ", pg_order=12, pg_mode = 'advanced'");
+}
+
+// Edit Plugin Versions
+$data = Jojo::selectQuery("SELECT * FROM {page} WHERE pg_url = 'admin/edit/plugin_version'");
+if (count($data) == 0) {
+    echo "Adding <b>Edit Plugin Version</b> Page to menu<br />";
+    Jojo::insertQuery("INSERT INTO {page} SET pg_title = 'Edit Plugin Versions', pg_link = 'Jojo_Plugin_Admin_Edit', pg_url = 'admin/edit/plugin_version', pg_parent=" . Jojo::cleanInt($_ADMIN_CONTENT_ID) . ", pg_order=13, pg_mode = 'advanced'");
+}

@@ -26,7 +26,7 @@ class JOJO_Plugin_Jojo_pluginupload extends JOJO_Plugin
         $templateoptions['frajax'] = true;
         $smarty->assign('templateoptions', $templateoptions);
 
-        $uploadpluginid = Util::getFormData('select-plugin', ''); /* upload new version for existing plugin  */
+        $uploadpluginid = Jojo::getFormData('select-plugin', ''); /* upload new version for existing plugin  */
 
         /* only upload a new version for existing plugin */
         if ($uploadpluginid){
@@ -80,7 +80,7 @@ class JOJO_Plugin_Jojo_pluginupload extends JOJO_Plugin
         global $smarty, $_USERID;
 
         include(_BASEDIR.'/includes/no-form-injection.inc.php');
-        $pluginid = Util::getFormData('pluginid', ''); //upload new version for existing plugin
+        $pluginid = Jojo::getFormData('pluginid', ''); //upload new version for existing plugin
 
         /*save only the new version of plugin - plugin already exists*/
         if ($pluginid){
@@ -134,7 +134,7 @@ class JOJO_Plugin_Jojo_pluginupload extends JOJO_Plugin
                     /* convert array to string */
                     $fields[$i]['value'] = implode(", ",$_POST['form_'.$fields[$i]['field']]);
                 } else {
-                    $fields[$i]['value'] = Util::getFormData('form_'.$fields[$i]['field'],'');
+                    $fields[$i]['value'] = Jojo::getFormData('form_'.$fields[$i]['field'],'');
                 }
                 /* check value is set on required fields */
                 if (($fields[$i]['required']) && (empty($fields[$i]['value']))) {
