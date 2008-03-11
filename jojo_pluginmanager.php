@@ -17,8 +17,6 @@
  * @link    http://www.jojocms.org JojoCMS
  */
 
-require(_PLUGINDIR . '/jojo_pluginmanager/external/ajaxrating/_drawrating.php');
-
 class JOJO_Plugin_Jojo_pluginmanager extends JOJO_Plugin
 {
     function _getContent()
@@ -26,7 +24,7 @@ class JOJO_Plugin_Jojo_pluginmanager extends JOJO_Plugin
         global $smarty;
         $content = array();
 
-        /* Do we have the reflec plugin available? */
+        /* Do we have the reflect plugin available? */
         $smarty->assign('reflect', class_exists('Jojo_plugin_jojo_reflect'));
 
         $action = Jojo::getFormData('action', 'list');
@@ -172,6 +170,20 @@ class JOJO_Plugin_Jojo_pluginmanager extends JOJO_Plugin
         return $content;
     }
 
+    public static function getPlugins($num = 3, $musthaveimages = false) {
+        $query = "SELECT * FROM {plugin_details}";
+        if ($musthaveimages) {
+            $query .= ' WHERE pd_image != ""';
+        }
+        $plugins = Jojo::selectQuery($query . " ORDER BY RAND() DESC LIMIT 0, $num");
+        foreach ($plugins as $i => $p){
+            $plugins[$i]['name'] = Jojo::html2text($p['pd_name']);
+            $plugins[$i]['url'] = Jojo::rewrite('plugins/details', $p['pluginid'], $p['pd_name'], '');
+        }
+        return $plugins;
+    }
+
+
     function _getPlugins($sortBy, $sortDir = 'ASC', $page = 0, $perPage = 10)
     {
         /* Select the latest version of each plugin from database */
@@ -196,7 +208,6 @@ class JOJO_Plugin_Jojo_pluginmanager extends JOJO_Plugin
 
         foreach($res as $k => $v) {
             $res[$k]['date'] = relativeDate($res[$k]['datetime']);
-            $res[$k]['stars'] = rating_bar($res[$k]['pluginversionid'], 5);
             if ($res[$k]['total_votes'] > 0) {
                 $res[$k]['rating'] = $res[$k] ['total_value'] / $res[$k] ['total_votes'];
             }
