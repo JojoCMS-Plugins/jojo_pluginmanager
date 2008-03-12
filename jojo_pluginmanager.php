@@ -61,7 +61,7 @@ class JOJO_Plugin_Jojo_pluginmanager extends JOJO_Plugin
                         header("Content-Type: application/x-7z-compressed");
                         break;
                 }
-                header(sprintf('Content-Disposition: attachment; filename="%s"', basename($save_as_name)));
+                header(sprintf('Content-Disposition: attachment; filename="%s"', basename($filename)));
                 @readfile($filename);
 
                 /* Update Downloadcounter */
