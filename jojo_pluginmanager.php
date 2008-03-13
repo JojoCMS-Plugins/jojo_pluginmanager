@@ -118,7 +118,7 @@ class JOJO_Plugin_Jojo_pluginmanager extends JOJO_Plugin
                 $breadcrumb['url'] =  Jojo::rewrite('plugins', $id, 'details','');
                 $breadcrumbs[count($breadcrumbs)] = $breadcrumb;
 
-                $content['seotitle'] = 'Details of Plugin '.$plugindetails[0]['pd_name'];
+                $content['seotitle'] = 'Details of Plugin '. $plugin['pd_name'];
                 $content['breadcrumbs'] = $breadcrumbs;
                 $content['content'] = $smarty->fetch('jojo_pluginmanger_details.tpl');
                 return $content;
