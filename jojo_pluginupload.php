@@ -47,10 +47,10 @@ class JOJO_Plugin_Jojo_pluginupload extends JOJO_Plugin
 
         /* Find username - seelct all userplugins */
         if (isset($_USERID)) {
-            $userplugins = Jojo::selectQuery("SELECT pd_name, pluginid FROM plugin_details WHERE pd_userid = '".Jojo::cleanInt($_USERID)."' ");
+            $userplugins = Jojo::selectQuery("SELECT pd_name, pluginid FROM plugin_details WHERE pd_userid = ?", array($_USERID));
             $smarty->assign('userplugins',$userplugins);
             $smarty->assign('userid',$_USERID);
-            $thisuser = Jojo::selectQuery("SELECT us_login FROM user WHERE userid=".Jojo::cleanInt($_USERID)." LIMIT 1");
+            $thisuser = Jojo::selectQuery("SELECT us_login FROM user WHERE userid = ? LIMIT 1", array($_USERID));
             $smarty->assign('username',$thisuser[0]['us_login']);
             $smarty->assign('userurl', Jojo::rewrite('profile',$_USERID,$thisuser[0]['us_login']));
         }
@@ -88,7 +88,7 @@ class JOJO_Plugin_Jojo_pluginupload extends JOJO_Plugin
                 $plugindetails = $_SESSION['plugindetails'];
             }
             else{
-                $plugindetails = Jojo::selectQuery("SELECT * FROM plugin_details WHERE pluginid = '".$pluginid."' LIMIT 1 ");
+                $plugindetails = Jojo::selectQuery("SELECT * FROM plugin_details WHERE pluginid = ? LIMIT 1 ", array($pluginid));
                 $smarty->assign('version','version');
                 $smarty->assign('plugindetails',$plugindetails);
             }
@@ -110,7 +110,7 @@ class JOJO_Plugin_Jojo_pluginupload extends JOJO_Plugin
         }
         /* check unique plugin name */
         if ($_POST['form_pluginname']) {
-            $data = Jojo::selectQuery("SELECT pd_name FROM plugin_details WHERE pd_name = '".$_POST['form_pluginname']."' ");
+            $data = Jojo::selectQuery("SELECT pd_name FROM plugin_details WHERE pd_name = ?", array(Jojo::getFormData('form_pluginname')));
             if (sizeof($data) > 0) {
                 $errors[] = "A plugin with the same name already exists, please choose another name for your plugin.";
             }
@@ -213,11 +213,10 @@ class JOJO_Plugin_Jojo_pluginupload extends JOJO_Plugin
 
         /* update database and move files to download - plugin directory */
         if (count($errors) == 0) {
-
             if ($pluginid == '') {
-                Jojo::insertQuery("INSERT INTO plugin_details SET pd_userid='".$_USERID."', pd_name = '".Jojo::clean($_POST['form_pluginname']) ."' , pd_author = '".Jojo::clean($_POST['form_author'])."', pd_website ='".Jojo::clean($_POST['form_website'])."' , pd_license ='".Jojo::clean($_POST['form_license'])."' , pd_description ='".Jojo::clean($_POST['form_description'])."' , pd_demolink ='".Jojo::clean($_POST['form_demolink'])."' , pd_tags ='".Jojo::clean($_POST['form_tags'])."' ");
-                $data = Jojo::selectQuery("SELECT pluginid FROM plugin_details WHERE pd_name = '".Jojo::clean($_POST['form_pluginname'])."' ");
-                $pluginid = $data[0]['pluginid'];
+                $pluginid = Jojo::insertQuery("INSERT INTO plugin_details SET pd_userid = ?, pd_name = ?, pd_author = ?, pd_website = ?, pd_license = ?, pd_description = ?, pd_demolink = ?, pd_tags = ?", 
+                    array($_USERID, Jojo::getFormData('form_pluginname'), Jojo::getFormData('form_author'),
+                        Jojo::getFormData('form_website'), Jojo::getFormData('form_license'), Jojo::getFormData('form_description'), Jojo:;getFormData('form_demolink'), Jojo::getFormData('form_tags')));
                 $uploadpath = _DOWNLOADDIR."/plugins/".$_POST['form_pluginname']."/".$_POST['form_pluginversion'];
                 Jojo::recursiveMkdir($uploadpath);
             } else {
@@ -226,7 +225,8 @@ class JOJO_Plugin_Jojo_pluginupload extends JOJO_Plugin
                 Jojo::recursiveMkdir($uploadpath);
             }
 
-            Jojo::insertQuery("INSERT INTO plugin_version SET pv_pluginid='".$pluginid."', pv_version = '".Jojo::clean($_POST['form_pluginversion']) ."' , pv_datetime='".strtotime('now')."', pv_releasenotes = '".Jojo::clean($_POST['form_releasenotes'])."' , pv_status = '".Jojo::clean($_POST['form_status'])."' , pv_file_zip ='".$filenames['zip']."' , pv_file_tgz ='".$filenames['tgz']."' ,pv_file_7z ='".$filenames['7z']."' ");
+            Jojo::insertQuery("INSERT INTO plugin_version SET pv_pluginid = ?, pv_version = ? , pv_datetime = ?, pv_releasenotes = ?, pv_status = ?, pv_file_zip = ?, pv_file_tgz = ?, pv_file_7z = ?",
+                array($pluginid, Jojo::getFormData('form_pluginversion'), Jojo::getFormData(strtotime('now')), Jojo::getFormData('form_releasenotes'), Jojo::getFormData('form_status'), $filenames['zip'], $filenames['tgz'], $filenames['7z']));
             Jojo::recursiveMkdir(_DOWNLOADDIR."/plugins/".$_POST['form_pluginname']."/".$_POST['form_pluginversion']);
 
             foreach ($uploadfiles as $upload) {
