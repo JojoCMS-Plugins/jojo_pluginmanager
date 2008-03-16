@@ -207,7 +207,7 @@ class JOJO_Plugin_Jojo_pluginmanager extends JOJO_Plugin
         $res = Jojo::selectQuery($query);
 
         foreach($res as $k => $v) {
-            $res[$k]['date'] = relativeDate($res[$k]['datetime']);
+            $res[$k]['date'] = Jojo::relativeDate($res[$k]['datetime']);
             if ($res[$k]['total_votes'] > 0) {
                 $res[$k]['rating'] = $res[$k] ['total_value'] / $res[$k] ['total_votes'];
             }
