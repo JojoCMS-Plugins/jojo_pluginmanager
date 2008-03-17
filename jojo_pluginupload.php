@@ -79,7 +79,8 @@ class JOJO_Plugin_Jojo_pluginupload extends JOJO_Plugin
     {
         global $smarty, $_USERID;
 
-        include(_BASEDIR.'/includes/no-form-injection.inc.php');
+        Jojo::noFormInjection();
+
         $pluginid = Jojo::getFormData('pluginid', ''); //upload new version for existing plugin
 
         /*save only the new version of plugin - plugin already exists*/
@@ -214,7 +215,7 @@ class JOJO_Plugin_Jojo_pluginupload extends JOJO_Plugin
         /* update database and move files to download - plugin directory */
         if (count($errors) == 0) {
             if ($pluginid == '') {
-                $pluginid = Jojo::insertQuery("INSERT INTO plugin_details SET pd_userid = ?, pd_name = ?, pd_author = ?, pd_website = ?, pd_license = ?, pd_description = ?, pd_demolink = ?, pd_tags = ?", 
+                $pluginid = Jojo::insertQuery("INSERT INTO plugin_details SET pd_userid = ?, pd_name = ?, pd_author = ?, pd_website = ?, pd_license = ?, pd_description = ?, pd_demolink = ?, pd_tags = ?",
                     array($_USERID, Jojo::getFormData('form_pluginname'), Jojo::getFormData('form_author'),
                         Jojo::getFormData('form_website'), Jojo::getFormData('form_license'), Jojo::getFormData('form_description'), Jojo:;getFormData('form_demolink'), Jojo::getFormData('form_tags')));
                 $uploadpath = _DOWNLOADDIR."/plugins/".$_POST['form_pluginname']."/".$_POST['form_pluginversion'];

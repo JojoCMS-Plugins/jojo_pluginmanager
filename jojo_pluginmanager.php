@@ -228,7 +228,7 @@ class JOJO_Plugin_Jojo_pluginmanager extends JOJO_Plugin
     {
         global $smarty;
 
-        include(_BASEDIR . '/includes/no-form-injection.inc.php');
+        Jojo::noFormInjection();
 
         $errors = '';
         if (!checkEmailFormat(Jojo::getFormData('email'))) {
