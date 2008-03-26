@@ -29,4 +29,3 @@ if (isset($result['added'])) {
 if (isset($result['different'])) {
     Jojo::printTableDifference($table,$result['different']);
 }
-

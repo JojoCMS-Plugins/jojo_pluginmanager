@@ -21,4 +21,3 @@
 Jojo::registerURI("plugins/[action:details]/[id:integer]/[string]",  'JOJO_Plugin_Jojo_pluginmanager');
 Jojo::registerURI("plugins/[action:allcomments]/[id:integer]/[string]",  'JOJO_Plugin_Jojo_pluginmanager');
 Jojo::registerURI("plugins/[action:download]/[id:integer]/[file:.*]",  'JOJO_Plugin_Jojo_pluginmanager');
-

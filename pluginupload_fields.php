@@ -153,5 +153,3 @@ $fields[$f]['type'] = 'file';
 $fields[$f]['size'] = '30';
 $fields[$f]['value'] = '';
 $fields[$f]['change'] = true;
-
-
