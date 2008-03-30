@@ -49,7 +49,7 @@ class JOJO_Plugin_Jojo_pluginmanager extends JOJO_Plugin
                 }
 
                 /* send header for file type */
-                $extension = getFileExtension($file);
+                $extension = Jojo::getFileExtension($file);
                 switch ($extension) {
                     case 'zip':
                         header("Content-Type: application/octet-stream");
@@ -62,7 +62,9 @@ class JOJO_Plugin_Jojo_pluginmanager extends JOJO_Plugin
                         break;
                 }
                 header(sprintf('Content-Disposition: attachment; filename="%s"', basename($filename)));
-                @readfile($filename);
+                $contents = file_get_contents($filename);
+                header("Content-Length: ". strlen($contents) );
+                echo $contents;
 
                 /* Update Downloadcounter */
                 Jojo::updateQuery("UPDATE {plugin_version} SET pv_downloads = pv_downloads+1 WHERE pluginversionid = ?", $id);
